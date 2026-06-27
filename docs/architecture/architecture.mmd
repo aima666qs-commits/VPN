@@ -1,0 +1,27 @@
+flowchart LR
+    GH[GitHub Repository] --> CI[GitHub Actions / GHCR]
+    CI --> WEB[Next.js Web + Telegram Mini App on Vercel]
+    CI --> CP[Ubuntu Control Plane]
+    CP --> API[NestJS Business API]
+    CP --> RW[Remnawave]
+    CP --> DB[(PostgreSQL)]
+    CP --> REDIS[(Redis)]
+    API --> BOT[Telegram Bot]
+    WEB --> API
+    API --> RW
+    RW --> N1[VPN Node 1]
+    RW --> N2[VPN Node 2]
+    N1 --> X1[Xray: VLESS + REALITY + Vision]
+    N2 --> X2[Xray: VLESS + REALITY + Vision]
+    N1 --> H1[Hysteria 2 fallback]
+    N2 --> H2[Hysteria 2 fallback]
+    N1 --> A1[AmneziaWG optional]
+    N2 --> A2[AmneziaWG optional]
+    MON[Prometheus + Grafana + Loki] --> CP
+    MON --> N1
+    MON --> N2
+    BACKUP[Encrypted Backup + Restore Test] --> DB
+    INSTALL[PowerShell + Ubuntu One-click Installer] --> CP
+    INSTALL --> N1
+    INSTALL --> N2
+    HF[Hugging Face optional anonymized analytics] -. aggregated metrics only .-> MON
