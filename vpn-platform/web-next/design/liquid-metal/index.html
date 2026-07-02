@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="liquid-metal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMA VPN — Liquid Metal OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/tokens.css" />
+  <link rel="stylesheet" href="../../shared/base.css" />
+  <style>
+    /* --- Liquid Metal: тёмный металл + брашированный отблеск --- */
+    .metal-bg { position: fixed; inset: 0; z-index: 0; background:
+      radial-gradient(120% 80% at 50% -10%, #1A1B1F 0%, #0A0A0B 60%),
+      repeating-linear-gradient(100deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 5px); }
+    .metal-bg::after { content:""; position:absolute; inset:0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);
+      background-size: 300% 100%; animation: sheen 9s linear infinite; }
+    @keyframes sheen { to { background-position: -200% 0; } }
+    /* металлическая кнопка подключения */
+    [data-theme="liquid-metal"] .connect-core {
+      background: linear-gradient(160deg, #24262B 0%, #141518 55%, #0C0D0F 100%);
+      box-shadow: var(--shadow-card), inset 0 2px 6px rgba(255,255,255,0.08), inset 0 -8px 20px rgba(0,0,0,0.7);
+    }
+    [data-theme="liquid-metal"] .connect-core .label { text-shadow: 0 1px 0 rgba(0,0,0,0.6); letter-spacing: 0.6px; text-transform: uppercase; }
+    [data-theme="liquid-metal"] .connect-core[data-state="connected"] { border-color: var(--brand); }
+    [data-theme="liquid-metal"] .btn-primary { color: #04121A; position: relative; overflow: hidden; }
+    [data-theme="liquid-metal"] .metric .v,
+    [data-theme="liquid-metal"] .brand { text-transform: uppercase; letter-spacing: 0.5px; }
+    @media (prefers-reduced-motion: reduce) { .metal-bg::after { animation: none; } }
+    html.rm .metal-bg::after { animation: none; }
+  </style>
+</head>
+<body>
+  <div class="metal-bg"></div>
+  <main class="app-shell" id="app"></main>
+  <script src="../../shared/connect-data.js"></script>
+  <script src="../../shared/connect-screen.js"></script>
+  <script src="../../shared/theme-switcher.js"></script>
+  <script>
+    AimaConnect.render("#app");
+    AimaThemer.init({ defaultTheme: "liquid-metal", lockToPage: true });
+  </script>
+</body>
+</html>

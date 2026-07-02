@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="aurora-glass">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMA VPN — Aurora Glass Prime</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/tokens.css" />
+  <link rel="stylesheet" href="../../shared/base.css" />
+  <style>
+    /* --- Aurora Glass: живой aurora-mesh фон + noise + proximity glow --- */
+    .aurora-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; background: var(--bg); }
+    .aurora-bg .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.55; will-change: transform; }
+    .aurora-bg .b1 { width: 480px; height: 480px; background: radial-gradient(circle, #22D3EE, transparent 70%); top: -120px; left: -80px; animation: drift1 18s var(--e-inout) infinite alternate; }
+    .aurora-bg .b2 { width: 420px; height: 420px; background: radial-gradient(circle, #8B5CF6, transparent 70%); bottom: -140px; right: -60px; animation: drift2 22s var(--e-inout) infinite alternate; }
+    .aurora-bg .b3 { width: 360px; height: 360px; background: radial-gradient(circle, #3B82F6, transparent 70%); top: 40%; left: 40%; animation: drift3 26s var(--e-inout) infinite alternate; }
+    @keyframes drift1 { to { transform: translate(60px, 80px) scale(1.15); } }
+    @keyframes drift2 { to { transform: translate(-70px, -50px) scale(1.1); } }
+    @keyframes drift3 { to { transform: translate(-40px, 60px) scale(0.9); } }
+    .noise { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .cursor-glow { position: fixed; width: 340px; height: 340px; border-radius: 50%; z-index: 0; pointer-events: none;
+      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 70%); transform: translate(-50%, -50%); transition: opacity var(--d-slow); opacity: 0; }
+    /* стеклянные карточки для Aurora */
+    [data-theme="aurora-glass"] .metric,
+    [data-theme="aurora-glass"] .server-row,
+    [data-theme="aurora-glass"] .quick a,
+    [data-theme="aurora-glass"] .subinfo { backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur)); }
+    @media (prefers-reduced-motion: reduce) { .aurora-bg .blob { animation: none; } }
+    html.rm .aurora-bg .blob { animation: none; }
+  </style>
+</head>
+<body>
+  <div class="aurora-bg"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="cg"></div>
+
+  <main class="app-shell" id="app"></main>
+
+  <script src="../../shared/connect-data.js"></script>
+  <script src="../../shared/connect-screen.js"></script>
+  <script src="../../shared/theme-switcher.js"></script>
+  <script>
+    AimaConnect.render("#app");
+    AimaThemer.init({ defaultTheme: "aurora-glass", lockToPage: true });
+    // cursor proximity glow (transform/opacity — дёшево)
+    const cg = document.getElementById("cg");
+    let raf = null;
+    window.addEventListener("pointermove", (e) => {
+      if (document.documentElement.classList.contains("rm")) return;
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        cg.style.left = e.clientX + "px"; cg.style.top = e.clientY + "px"; cg.style.opacity = "1"; raf = null;
+      });
+    });
+  </script>
+</body>
+</html>

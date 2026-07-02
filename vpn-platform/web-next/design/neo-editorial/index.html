@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="neo-editorial">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMA VPN — Neo Editorial Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/tokens.css" />
+  <link rel="stylesheet" href="../../shared/base.css" />
+  <style>
+    /* --- Neo Editorial: характер, крупная типографика, минимум стекла --- */
+    .ed-bg { position: fixed; inset: 0; z-index: 0; background: var(--bg); }
+    .ed-mast { max-width: 460px; margin: 0 auto; padding: var(--sp-6) var(--sp-4) 0; position: relative; z-index: 1; }
+    .ed-mast .kicker { font-family: var(--font-mono); font-size: var(--fs-2xs); letter-spacing: 2px; text-transform: uppercase; color: var(--accent); }
+    .ed-mast h1 { font-family: var(--font-display); font-weight: 700; font-size: 44px; line-height: 0.98; letter-spacing: -1px; margin: var(--sp-2) 0 0; }
+    .ed-mast h1 em { font-style: normal; color: var(--accent-2); }
+    .ed-rule { height: 2px; background: var(--text); margin: var(--sp-5) 0 0; opacity: 0.9; }
+    [data-theme="neo-editorial"] .metric { border-radius: 0; border-width: 0 0 2px 0; background: transparent; }
+    [data-theme="neo-editorial"] .metric .v { font-family: var(--font-display); }
+    [data-theme="neo-editorial"] .server-row,
+    [data-theme="neo-editorial"] .subinfo { border-radius: 0; }
+    [data-theme="neo-editorial"] .connect-core { border-radius: 0; border-width: 2px; background: transparent; }
+    [data-theme="neo-editorial"] .connect-core .label { font-family: var(--font-display); text-transform: uppercase; }
+    [data-theme="neo-editorial"] .btn { border-radius: 0; }
+    [data-theme="neo-editorial"] .quick a { border-radius: 0; }
+    [data-theme="neo-editorial"] .connect-core .pulse { border-radius: 0; }
+  </style>
+</head>
+<body>
+  <div class="ed-bg"></div>
+  <div class="ed-mast">
+    <div class="kicker">Свободный интернет · 2026</div>
+    <h1>Скорость.<br>Приватность.<br><em>Контроль.</em></h1>
+    <div class="ed-rule"></div>
+  </div>
+  <main class="app-shell" id="app" style="padding-top:var(--sp-5)"></main>
+  <script src="../../shared/connect-data.js"></script>
+  <script src="../../shared/connect-screen.js"></script>
+  <script src="../../shared/theme-switcher.js"></script>
+  <script>
+    AimaConnect.render("#app");
+    AimaThemer.init({ defaultTheme: "neo-editorial", lockToPage: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="spatial-orbit">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMA VPN — Spatial Orbit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/tokens.css" />
+  <link rel="stylesheet" href="../../shared/base.css" />
+  <style>
+    /* --- Spatial Orbit: 2D-орбиты серверов вокруг ядра (без WebGL) --- */
+    .orbit-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden;
+      background: radial-gradient(80% 60% at 50% 20%, #0A0F1C 0%, #05070D 65%); }
+    .orbit-bg .stars { position: absolute; inset: 0; opacity: 0.5;
+      background-image: radial-gradient(1px 1px at 20% 30%, #fff, transparent), radial-gradient(1px 1px at 70% 50%, #9ad, transparent), radial-gradient(1px 1px at 40% 80%, #fff, transparent), radial-gradient(1px 1px at 85% 20%, #7ce, transparent);
+      background-size: 200px 200px; }
+    .orbit-field { position: absolute; top: 22%; left: 50%; transform: translateX(-50%); width: 460px; height: 460px; }
+    .orbit-field .ringo { position: absolute; inset: 0; border: 1px solid var(--orbit-line); border-radius: 50%; }
+    .orbit-field .r2 { inset: 70px; } .orbit-field .r3 { inset: 140px; }
+    .orbit-field .sat { position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; margin: -5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px var(--accent); }
+    .spin { animation: orbit linear infinite; transform-origin: 50% 50%; }
+    .s1 { animation-duration: 20s; } .s2 { animation-duration: 32s; } .s3 { animation-duration: 46s; }
+    .orbit-field .arm { position: absolute; inset: 0; }
+    .orbit-field .arm .sat { transform: translateX(230px); }
+    .orbit-field .r2arm .sat { transform: translateX(160px); background: var(--accent-2); box-shadow: 0 0 14px var(--accent-2); }
+    .orbit-field .r3arm .sat { transform: translateX(90px); background: var(--accent-3); box-shadow: 0 0 14px var(--accent-3); }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    [data-theme="spatial-orbit"] .connect-core[data-state="connected"] { box-shadow: var(--shadow-glow), var(--glow); }
+    @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+    html.rm .spin { animation: none; }
+  </style>
+</head>
+<body>
+  <div class="orbit-bg">
+    <div class="stars"></div>
+    <div class="orbit-field">
+      <div class="ringo"></div><div class="ringo r2"></div><div class="ringo r3"></div>
+      <div class="arm spin s1"><span class="sat"></span></div>
+      <div class="arm r2arm spin s2"><span class="sat"></span></div>
+      <div class="arm r3arm spin s3"><span class="sat"></span></div>
+    </div>
+  </div>
+  <main class="app-shell" id="app" style="position:relative;z-index:2;margin-top:120px"></main>
+  <script src="../../shared/connect-data.js"></script>
+  <script src="../../shared/connect-screen.js"></script>
+  <script src="../../shared/theme-switcher.js"></script>
+  <script>
+    AimaConnect.render("#app");
+    AimaThemer.init({ defaultTheme: "spatial-orbit", lockToPage: true });
+    // soft parallax орбит от указателя (transform only)
+    const field = document.querySelector(".orbit-field");
+    window.addEventListener("pointermove", (e) => {
+      if (document.documentElement.classList.contains("rm")) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 16;
+      const y = (e.clientY / window.innerHeight - 0.5) * 16;
+      field.style.transform = `translateX(-50%) translate(${x}px, ${y}px)`;
+    });
+  </script>
+</body>
+</html>

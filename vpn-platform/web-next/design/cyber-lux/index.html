@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="cyber-lux">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMA VPN — Cyber Lux Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/tokens.css" />
+  <link rel="stylesheet" href="../../shared/base.css" />
+  <style>
+    /* --- Cyber Lux: сетка + световые линии (командный центр) --- */
+    .cyber-bg { position: fixed; inset: 0; z-index: 0; background:
+      radial-gradient(100% 70% at 50% 0%, #0A1024 0%, #060810 60%); overflow: hidden; }
+    .cyber-bg .grid { position: absolute; inset: 0;
+      background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 44px 44px; mask-image: radial-gradient(90% 70% at 50% 30%, #000 40%, transparent 100%); }
+    .cyber-bg .scan { position: absolute; left: 0; right: 0; height: 2px; top: 0;
+      background: linear-gradient(90deg, transparent, #22D3EE, transparent); opacity: 0.5; animation: scan 6s linear infinite; }
+    @keyframes scan { to { top: 100%; } }
+    .cyber-bg .node { position: absolute; width: 6px; height: 6px; border-radius: 50%; background: #22D3EE; box-shadow: 0 0 12px #22D3EE; opacity: 0.8; }
+    .cyber-bg .n1 { top: 22%; left: 18%; } .cyber-bg .n2 { top: 34%; right: 22%; background: #EC4899; box-shadow: 0 0 12px #EC4899; }
+    .cyber-bg .n3 { bottom: 26%; left: 30%; background: #2563EB; box-shadow: 0 0 12px #2563EB; }
+    [data-theme="cyber-lux"] .metric .v { font-family: var(--font-mono); }
+    [data-theme="cyber-lux"] .metric { position: relative; }
+    [data-theme="cyber-lux"] .metric::before { content:""; position:absolute; top:0; left:0; width:20px; height:2px; background: var(--accent); border-radius:2px; }
+    [data-theme="cyber-lux"] .connect-core[data-state="connected"] { box-shadow: var(--shadow-glow), 0 0 60px rgba(34,211,238,0.4); }
+    @media (prefers-reduced-motion: reduce) { .cyber-bg .scan { animation: none; opacity: 0; } }
+    html.rm .cyber-bg .scan { animation: none; opacity: 0; }
+  </style>
+</head>
+<body>
+  <div class="cyber-bg">
+    <div class="grid"></div><span class="scan"></span>
+    <span class="node n1"></span><span class="node n2"></span><span class="node n3"></span>
+  </div>
+  <main class="app-shell" id="app"></main>
+  <script src="../../shared/connect-data.js"></script>
+  <script src="../../shared/connect-screen.js"></script>
+  <script src="../../shared/theme-switcher.js"></script>
+  <script>
+    AimaConnect.render("#app");
+    AimaThemer.init({ defaultTheme: "cyber-lux", lockToPage: true });
+  </script>
+</body>
+</html>

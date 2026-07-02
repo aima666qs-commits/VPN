@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="calm-enterprise">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiMA VPN — Calm Enterprise</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../shared/tokens.css" />
+  <link rel="stylesheet" href="../../shared/base.css" />
+  <style>
+    /* --- Calm Enterprise: почти без декора, порядок и воздух --- */
+    .calm-bg { position: fixed; inset: 0; z-index: 0; background: var(--bg); }
+    [data-theme="calm-enterprise"] .app-shell { padding-top: var(--sp-8); }
+    /* ровные тонкие карточки, без свечения */
+    [data-theme="calm-enterprise"] .connect-core {
+      background: #fff; box-shadow: var(--shadow-card);
+    }
+    [data-theme="calm-enterprise"] .connect-core[data-state="connected"] {
+      box-shadow: var(--shadow-glow); border-color: var(--accent);
+    }
+    [data-theme="calm-enterprise"] .connect-core .pulse { display: none; } /* без пульса — спокойствие */
+    [data-theme="calm-enterprise"] .metric:hover { transform: none; border-color: var(--border-strong); }
+    [data-theme="calm-enterprise"] .quick a:hover { transform: none; }
+    /* больше воздуха */
+    [data-theme="calm-enterprise"] .metrics { gap: var(--sp-4); }
+  </style>
+</head>
+<body>
+  <div class="calm-bg"></div>
+  <main class="app-shell" id="app"></main>
+  <script src="../../shared/connect-data.js"></script>
+  <script src="../../shared/connect-screen.js"></script>
+  <script src="../../shared/theme-switcher.js"></script>
+  <script>
+    AimaConnect.render("#app");
+    AimaThemer.init({ defaultTheme: "calm-enterprise", lockToPage: true });
+  </script>
+</body>
+</html>
