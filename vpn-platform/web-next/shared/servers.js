@@ -68,6 +68,37 @@ window.XSERVIS = {
       sni: "rutube.ru",
       link: "vless://5acc7b69-19ee-40d8-ba43-05d9b91d1a26@157.22.253.53:10443?type=tcp&security=reality&sni=rutube.ru&fp=chrome&pbk=zZmF2xD70pbTijm-2O-V6kzFNcWZY33xbnniVvchFmM&sid=ee9658&flow=xtls-rprx-vision#Xservis-RU-rutube",
     },
+    /* Новые узлы, развёрнуты и сквозным трафиком проверены 2026-07-05/06 (HostKey) */
+    {
+      id: "tr-main",
+      flag: "🇹🇷",
+      name: "Турция",
+      role: "Дополнительный обход блокировок",
+      host: "82.26.94.154",
+      port: 443,
+      sni: "www.cloudflare.com",
+      link: "vless://5a778f57-b91d-4750-9166-0577445202ce@82.26.94.154:443?type=tcp&security=reality&sni=www.cloudflare.com&fp=chrome&pbk=IshJ7Aw06DAf9q9S3HvZL4C8MnO5aN47mcMfdnPA3wo&sid=761128ae5da65734&flow=xtls-rprx-vision#Xservis-TR",
+    },
+    {
+      id: "ru-newhost",
+      flag: "🇷🇺",
+      name: "Россия · новый узел (Yandex SNI)",
+      role: "Дополнительный быстрый РФ-маршрут",
+      host: "77.91.93.217",
+      port: 443,
+      sni: "www.yandex.ru",
+      link: "vless://270472e6-95d6-46d1-a92b-c23410fa4dfa@77.91.93.217:443?type=tcp&security=reality&sni=www.yandex.ru&fp=chrome&pbk=MlRaTsB9Bn_MmQEiLPbA0QpMpO3hLiPBfwLC1rlFV1c&sid=d51143136a97b0e8&flow=xtls-rprx-vision#Xservis-RU-new",
+    },
+    {
+      id: "fi-main",
+      flag: "🇫🇮",
+      name: "Финляндия",
+      role: "Дополнительный обход блокировок (север Европы)",
+      host: "148.135.211.19",
+      port: 443,
+      sni: "www.microsoft.com",
+      link: "vless://bcd9700d-2a1e-4c49-ac3f-c80c2ebd2e01@148.135.211.19:443?type=tcp&security=reality&sni=www.microsoft.com&fp=chrome&pbk=-WK7OQ7d3epu96rYD_TeM8hzYGpwVqtl32de6F5EYEg&sid=8b10f099605bfd1a&flow=xtls-rprx-vision#Xservis-FI",
+    },
   ],
 
   /* Кнопки сервисов → какой сервер лучше подходит (для заблокированных → DE) */
