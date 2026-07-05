@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Локальный статический сервер для web-next (design showcase AiMA VPN).
+"""Локальный статический сервер для web-next (design showcase Xservis).
 
 Запуск:
     cd C:\\Users\\kkkj\\vpn-platform\\web-next
@@ -32,7 +32,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == "__main__":
     with socketserver.TCPServer(("127.0.0.1", PORT), Handler) as httpd:
-        print(f"AiMA VPN design showcase -> http://localhost:{PORT}/")
+        print(f"Xservis design showcase -> http://localhost:{PORT}/")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

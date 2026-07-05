@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AiMA VPN — 6 дизайн-концепций</title>
+  <title>Xservis — 6 дизайн-концепций</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
@@ -41,12 +41,12 @@
   <main class="hub">
     <div class="hub-head">
       <div>
-        <div class="kicker">AiMA VPN · Design System</div>
+        <div class="kicker">Xservis · Design System</div>
         <h1>6 премиальных концепций</h1>
         <p>Один и тот же главный экран подключения в 6 визуальных системах. Наведи для превью,
            нажми, чтобы открыть в полном размере. Тему можно переключать на лету через ⚙.</p>
       </div>
-      <button class="gear" id="aima-gear" aria-label="Настройки">⚙</button>
+      <button class="gear" id="xs-gear" aria-label="Настройки">⚙</button>
     </div>
 
     <section class="cards" id="cards"></section>
@@ -61,7 +61,7 @@
   <script src="shared/theme-switcher.js"></script>
   <script>
     const cards = document.getElementById("cards");
-    (window.AIMA_THEMES || []).forEach((t) => {
+    (window.XSERVIS_THEMES || []).forEach((t) => {
       const main = t.id === "aurora-glass";
       const c = document.createElement("a");
       c.className = "card-c";
@@ -80,7 +80,7 @@
     });
 
     // Хаб: меню настроек управляет темой самого хаба (не форсит страницу)
-    AimaThemer.init({ defaultTheme: "aurora-glass", lockToPage: false });
+    XservisThemer.init({ defaultTheme: "aurora-glass", lockToPage: false });
   </script>
 </body>
 </html>

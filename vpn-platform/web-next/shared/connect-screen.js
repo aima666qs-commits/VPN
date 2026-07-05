@@ -1,10 +1,10 @@
 /* ============================================================================
-   AiMA VPN — рендер общего главного экрана (экран подключения).
-   Все 6 концепций вызывают AimaConnect.render("#mount").
+   Xservis — рендер общего главного экрана (экран подключения).
+   Все 6 концепций вызывают XservisConnect.render("#mount").
    Декоративный фон каждой темы добавляется отдельно в её index.html.
    ============================================================================ */
 (function () {
-  const d = window.AIMA_CONNECT;
+  const d = window.XSERVIS_CONNECT;
 
   const STATE_LABEL = {
     disconnected: { label: "Подключить", sub: "Отключено" },
@@ -21,7 +21,7 @@
   function coreMarkup(state) {
     const s = STATE_LABEL[state];
     return `
-      <div class="connect-core" data-state="${state}" id="aima-core" role="button" tabindex="0"
+      <div class="connect-core" data-state="${state}" id="xs-core" role="button" tabindex="0"
            aria-label="${s.label}">
         <span class="ring"></span>
         <span class="pulse"></span>
@@ -42,7 +42,7 @@
           <span class="mark">X</span>
           <span class="name">${d.brand.name}<b>${d.brand.accent}</b></span>
         </div>
-        <button class="gear" id="aima-gear" aria-label="Настройки">⚙</button>
+        <button class="gear" id="xs-gear" aria-label="Настройки">⚙</button>
       </header>
 
       <div class="connect-wrap reveal d1">
@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <button class="btn btn-ghost btn-full reveal d2" id="aima-auto" style="margin-top:var(--sp-3)">
+      <button class="btn btn-ghost btn-full reveal d2" id="xs-auto" style="margin-top:var(--sp-3)">
         ⚡ Авто-выбор лучшего маршрута
       </button>
 
@@ -102,7 +102,7 @@
   }
 
   function wireInteractions() {
-    const core = document.getElementById("aima-core");
+    const core = document.getElementById("xs-core");
     if (!core) return;
     const order = ["disconnected", "connecting", "connected"];
     core.addEventListener("click", () => {
@@ -154,5 +154,5 @@
     requestAnimationFrame(tick);
   }
 
-  window.AimaConnect = { render };
+  window.XservisConnect = { render };
 })();

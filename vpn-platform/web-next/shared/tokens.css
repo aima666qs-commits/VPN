@@ -1,5 +1,5 @@
 /* ============================================================================
-   AiMA VPN — Design Tokens
+   Xservis — Design Tokens
    Все 6 концепций через [data-theme]. Единый источник значений.
    Бренд-акцент: бирюзовый #14B8A6 (Xservis).
    ============================================================================ */
@@ -217,6 +217,45 @@
 }
 
 /* ============================================================================
+   7. XSERVIS HYBRID — production-тема главного экрана приложения.
+   Формула из FINAL_DESIGN_DECISION.md: структура/доверие Calm Enterprise
+   (светлый фон, чистая сетка) + атмосфера Aurora Glass (mesh-градиент,
+   энергетическое ядро, свечение) + Cyber-метрики + Spatial/Liquid акценты
+   локально на конкретных элементах (не глобально).
+   ============================================================================ */
+[data-theme="xservis-hybrid"] {
+  --bg: #FAFBFC;
+  --bg-2: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-2: #F3F5F7;
+  --surface-solid: #FFFFFF;
+  --text: #0F1621;
+  --text-2: #4B5768;
+  --muted: #97A2B0;
+  --border: #E7EAEE;
+  --border-strong: #D3D8DF;
+
+  --accent: #14B8A6;
+  --accent-2: #22D3EE;
+  --accent-3: #3B82F6;
+  --accent-grad: linear-gradient(135deg, #14B8A6 0%, #22D3EE 55%, #3B82F6 100%);
+  --glow: 0 0 40px rgba(20, 184, 166, 0.28);
+
+  /* тёмная зона (только "энергетическое ядро" подключения — точечно Aurora) */
+  --core-bg: #0B0E14;
+  --core-text: #EAF1F8;
+  --core-text-2: #A7B4C4;
+
+  --blur: 14px;
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 6px 24px rgba(16, 24, 40, 0.06);
+  --shadow-glow: 0 8px 30px rgba(20, 184, 166, 0.22);
+
+  --font: var(--font-sans);
+  --font-head: var(--font-sans);
+  color-scheme: light;
+}
+
+/* ============================================================================
    6. NEO EDITORIAL TECH
    ============================================================================ */
 [data-theme="neo-editorial"] {
@@ -243,5 +282,70 @@
 
   --font: var(--font-sans);
   --font-head: var(--font-display);
+  color-scheme: dark;
+}
+
+/* ============================================================================
+   8. XSERVIS VOID — из референса дизайна пользователя (Downloads/DESIGN*.md):
+   чистый чёрный canvas, прозрачные "окна" (hairline-border, БЕЗ заливки/тени/
+   блюра — только контур на пустоте), единственный фиолетовый акцент.
+   ============================================================================ */
+[data-theme="xservis-void"] {
+  --bg: #000000;
+  --bg-2: #000000;
+  --surface: transparent;           /* окна прозрачные — заливки нет */
+  --surface-2: rgba(255, 255, 255, 0.03);
+  --surface-solid: #000000;
+  --text: #FFFFFF;                  /* Bone */
+  --text-2: #BDBDBD;                /* Ash */
+  --muted: #9A9A9A;                 /* Smoke */
+  --border: rgba(255, 255, 255, 0.10);   /* hairline */
+  --border-strong: rgba(255, 255, 255, 0.22);
+
+  --accent: #8052FF;                /* Plum Voltage — единственный акцент */
+  --accent-2: #FFB829;              /* Amber Spark — только для обводок, не фон кнопок */
+  --accent-3: #15846E;              /* Lichen — декоративные иконки */
+  --accent-grad: #8052FF;           /* система намеренно без градиентов на кнопках */
+  --glow: none;
+
+  --blur: 0px;                      /* без блюра — плоская пустота, не стекло */
+  --shadow-card: none;              /* карточка = только hairline-border, без тени */
+  --shadow-glow: none;
+
+  --font: var(--font-sans);
+  --font-head: var(--font-sans);
+  color-scheme: dark;
+}
+
+/* ============================================================================
+   9. XSERVIS VAULT — «изумрудный сейф». Единственная тёпло-тёмная тема:
+   глубокая зелёная темнота (зелёный = «безопасно/разрешено» — зелёный замочек,
+   зелёная галочка) + шампанское золото (частный банк, premium-доверие).
+   Ни одна из 8 тем не использует зелёную базу или тёплое золото.
+   ============================================================================ */
+[data-theme="xservis-vault"] {
+  --bg: #06100D;
+  --bg-2: #0A1613;
+  --surface: rgba(214, 255, 238, 0.045);
+  --surface-2: rgba(214, 255, 238, 0.075);
+  --surface-solid: #0D1B17;
+  --text: #EAF6F0;
+  --text-2: #A3BDB2;
+  --muted: #647A6F;
+  --border: rgba(150, 220, 190, 0.13);
+  --border-strong: rgba(178, 232, 206, 0.26);
+
+  --accent: #34E3A5;          /* изумруд — «связь есть, безопасно» */
+  --accent-2: #E8C87A;        /* шампанское золото — premium-доверие */
+  --accent-3: #14B8A6;        /* бренд-бирюза как мост к Xservis */
+  --accent-grad: linear-gradient(135deg, #34E3A5 0%, #14B8A6 55%, #E8C87A 100%);
+  --glow: 0 0 36px rgba(52, 227, 165, 0.30);
+
+  --blur: 12px;
+  --shadow-card: 0 10px 36px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(232, 200, 122, 0.06);
+  --shadow-glow: 0 0 46px rgba(52, 227, 165, 0.20);
+
+  --font: var(--font-sans);
+  --font-head: var(--font-sans);
   color-scheme: dark;
 }
