@@ -96,8 +96,8 @@ window.XSERVIS = {
       role: "Дополнительный обход блокировок (север Европы)",
       host: "148.135.211.19",
       port: 443,
-      sni: "www.microsoft.com",
-      link: "vless://bcd9700d-2a1e-4c49-ac3f-c80c2ebd2e01@148.135.211.19:443?type=tcp&security=reality&sni=www.microsoft.com&fp=chrome&pbk=-WK7OQ7d3epu96rYD_TeM8hzYGpwVqtl32de6F5EYEg&sid=8b10f099605bfd1a&flow=xtls-rprx-vision#Xservis-FI",
+      sni: "www.cloudflare.com",
+      link: "vless://bcd9700d-2a1e-4c49-ac3f-c80c2ebd2e01@148.135.211.19:443?type=tcp&security=reality&sni=www.cloudflare.com&fp=chrome&pbk=-WK7OQ7d3epu96rYD_TeM8hzYGpwVqtl32de6F5EYEg&sid=8b10f099605bfd1a&flow=xtls-rprx-vision#Xservis-FI",
     },
   ],
 
