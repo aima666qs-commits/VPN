@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="xservis-hybrid">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Xservis — VPN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../shared/tokens.css" />
+  <link rel="stylesheet" href="../shared/base.css" />
+  <link rel="stylesheet" href="app.css" />
+  <!-- Telegram WebApp SDK: активируется, если открыто внутри бота -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand"><span class="mark">X</span><span class="name">Xservis</span></div>
+      <button class="gear" id="xs-gear" aria-label="Настройки">⚙</button>
+    </header>
+
+    <!-- статус подписки (реальный) -->
+    <div class="status-banner">
+      <span id="sub-count">загрузка…</span>
+      <span class="metric-mini">серверов: <b id="m-servers">4</b></span>
+    </div>
+
+    <!-- ============ ВСЕГДА НА СВЯЗИ: WhatsApp/YouTube/Telegram/Instagram ============ -->
+    <div class="section-title">Всегда на связи · 24/7</div>
+    <div class="alwayson-grid" id="alwayson-grid"></div>
+
+    <!-- ============ Ф1: живая диагностика сети "в один тап" ============ -->
+    <div class="section-title">Диагностика сети</div>
+    <div class="diag-card" id="diag-card">
+      <div class="diag-head">
+        <div class="diag-title">Подобрать рабочий VPN под вашу сеть</div>
+        <div class="diag-sub" id="diag-sub">Определим регион, тип сети и какие серверы у вас реально доступны</div>
+      </div>
+      <button class="btn btn-primary btn-full" id="btn-diag">🩺 Проверить мою сеть</button>
+      <div class="diag-result hidden" id="diag-result"></div>
+    </div>
+
+    <!-- ============ Ф3: умный автоподбор протокола (fallback-цепочка) ============ -->
+    <div class="section-title">Умный автоподбор</div>
+    <button class="btn btn-ghost btn-full" id="btn-smart">⚡ Автоподключение (сам подберёт протокол)</button>
+    <div class="smart-log hidden" id="smart-log"></div>
+
+    <!-- ============ Ф6: определение метода блокировки + автоконфиг ============ -->
+    <div class="section-title">Что именно вас блокирует</div>
+    <button class="btn btn-ghost btn-full" id="btn-blockdetect">🔬 Определить метод блокировки</button>
+    <div class="diag-result hidden" id="blockdetect-result"></div>
+
+    <!-- ============ Ф7: полная телеметрия устройства (IP/гео/модель/сеть) ============ -->
+    <div class="section-title">Полная информация об устройстве</div>
+    <button class="btn btn-ghost btn-full" id="btn-telemetry">🧾 Показать полную информацию</button>
+    <div class="diag-result hidden" id="telemetry-result"></div>
+
+    <!-- ============ Ф5: режим по цели вместо протокола ============ -->
+    <div class="section-title">Что вам нужно сейчас</div>
+    <div class="goal-row" id="goal-row"></div>
+
+    <!-- ГЛАВНАЯ кнопка: импорт всей подписки в клиент -->
+    <div class="section-title">Подключиться в один клик</div>
+    <div class="connect-actions">
+      <button class="btn btn-primary btn-full" id="btn-v2raytun">📲 Подключить в v2RayTun</button>
+      <button class="btn btn-ghost btn-full" id="btn-hiddify">📲 Подключить в Hiddify</button>
+      <button class="btn btn-ghost btn-full" id="btn-copysub">📋 Скопировать ссылку подписки</button>
+      <div class="sub-url-box" id="sub-url"></div>
+    </div>
+
+    <!-- ============ Ф4: персональная подписка (по результату диагностики) ============ -->
+    <div class="section-title">Персональная подписка</div>
+    <div class="personal-card" id="personal-card">
+      <div class="muted" style="font-size:var(--fs-xs)" id="personal-hint">
+        Появится после диагностики — только реально рабочие у вас серверы, без лишнего.
+      </div>
+      <div class="hidden" id="personal-actions">
+        <button class="btn btn-ghost btn-full" id="btn-personal-copy">📋 Скопировать персональную ссылку</button>
+      </div>
+    </div>
+
+    <!-- быстрый доступ к сервисам → выбор сервера -->
+    <div class="section-title">Быстрый доступ</div>
+    <div id="services"></div>
+
+    <!-- проверка + 4 реальных сервера -->
+    <div class="section-title">Наши серверы</div>
+    <button class="btn btn-ghost btn-full" id="btn-check">🔍 Проверить и показать серверы</button>
+    <div id="servers" style="margin-top:var(--sp-3)"></div>
+
+    <!-- ============ Ф2: живая карта блокировок сообщества ============ -->
+    <div class="section-title">Карта блокировок сообщества</div>
+    <div class="blockmap-card" id="blockmap-card">
+      <div class="blockmap-head">
+        <span>Живая телеметрия других пользователей Xservis</span>
+        <span class="pulse-dot" aria-hidden="true"></span>
+      </div>
+      <div class="blockmap-stats" id="blockmap-stats">нет данных</div>
+      <div class="blockmap-list" id="blockmap-list"></div>
+    </div>
+
+    <div class="legal-note">
+      Клиент (v2RayTun / Hiddify) сам скачивает конфигурации по ссылке подписки и обновляет их.
+      Кнопка «Проверить» проверяет доступность портов серверов из вашей сети — реальный туннель
+      устанавливает приложение-клиент, а не браузер. Домен: <b>xservis.online</b>.
+    </div>
+  </main>
+
+  <script src="../shared/servers.js"></script>
+  <script src="../shared/connect-data.js"></script>
+  <script src="../shared/theme-switcher.js"></script>
+  <script src="app.js"></script>
+  <script src="alwayson.js"></script>
+  <script src="premium.js"></script>
+  <script src="block-detector.js"></script>
+  <script src="telemetry.js"></script>
+  <script>
+    // меню настроек (переключение дизайна) доступно и здесь
+    XservisThemer.init({ defaultTheme: "xservis-hybrid", lockToPage: false });
+  </script>
+</body>
+</html>

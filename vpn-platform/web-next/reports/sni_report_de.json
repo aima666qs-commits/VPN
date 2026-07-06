@@ -1,0 +1,187 @@
+{
+  "ru": [
+    {
+      "domain": "rutube.ru",
+      "ok": true,
+      "median_ms": 8.3,
+      "min_ms": 6.5,
+      "max_ms": 13.5,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "avito.ru",
+      "ok": true,
+      "median_ms": 57.3,
+      "min_ms": 57.2,
+      "max_ms": 298.8,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "vk.com",
+      "ok": true,
+      "median_ms": 72.6,
+      "min_ms": 66.4,
+      "max_ms": 78.5,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "ozon.ru",
+      "ok": true,
+      "median_ms": 74.3,
+      "min_ms": 73.2,
+      "max_ms": 79.4,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "sberbank.ru",
+      "ok": true,
+      "median_ms": 87.6,
+      "min_ms": 85.8,
+      "max_ms": 122.1,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "yandex.ru",
+      "ok": true,
+      "median_ms": 103.8,
+      "min_ms": 103.5,
+      "max_ms": 111.1,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "ya.ru",
+      "ok": true,
+      "median_ms": 109.8,
+      "min_ms": 102.5,
+      "max_ms": 110.8,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "dzen.ru",
+      "ok": true,
+      "median_ms": 122.9,
+      "min_ms": 78.8,
+      "max_ms": 133.2,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "ok.ru",
+      "ok": true,
+      "median_ms": 129.3,
+      "min_ms": 83.5,
+      "max_ms": 130.0,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "mail.ru",
+      "ok": true,
+      "median_ms": 145.4,
+      "min_ms": 135.5,
+      "max_ms": 148.5,
+      "success_rate": "3/3",
+      "tls13": false
+    }
+  ],
+  "foreign": [
+    {
+      "domain": "discord.com",
+      "ok": true,
+      "median_ms": 7.7,
+      "min_ms": 6.9,
+      "max_ms": 7.7,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.apple.com",
+      "ok": true,
+      "median_ms": 9.9,
+      "min_ms": 8.2,
+      "max_ms": 21.3,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.cloudflare.com",
+      "ok": true,
+      "median_ms": 10.0,
+      "min_ms": 9.4,
+      "max_ms": 11.3,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.google.com",
+      "ok": true,
+      "median_ms": 14.2,
+      "min_ms": 14.1,
+      "max_ms": 16.6,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.intel.com",
+      "ok": true,
+      "median_ms": 19.9,
+      "min_ms": 19.6,
+      "max_ms": 20.2,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.samsung.com",
+      "ok": true,
+      "median_ms": 20.8,
+      "min_ms": 7.9,
+      "max_ms": 29.2,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.bing.com",
+      "ok": true,
+      "median_ms": 26.2,
+      "min_ms": 25.0,
+      "max_ms": 40.8,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.microsoft.com",
+      "ok": true,
+      "median_ms": 26.9,
+      "min_ms": 26.7,
+      "max_ms": 27.0,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.amazon.com",
+      "ok": true,
+      "median_ms": 31.9,
+      "min_ms": 31.4,
+      "max_ms": 34.0,
+      "success_rate": "3/3",
+      "tls13": true
+    },
+    {
+      "domain": "www.wikipedia.org",
+      "ok": true,
+      "median_ms": 61.3,
+      "min_ms": 60.6,
+      "max_ms": 173.7,
+      "success_rate": "3/3",
+      "tls13": true
+    }
+  ],
+  "generated_at": "2026-07-03T00:03:01Z"
+}

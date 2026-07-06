@@ -1,0 +1,223 @@
+/* Xservis WebApp — специфичные стили рабочего экрана (поверх base.css) */
+
+/* ------- гибридный фон: aurora-mesh только сверху (энергетическая зона),
+   ниже — чистый Calm Enterprise. Работает поверх темы xservis-hybrid. ------- */
+[data-theme="xservis-hybrid"] body {
+  background:
+    radial-gradient(760px 420px at 15% -10%, rgba(34,211,238,0.14), transparent 60%),
+    radial-gradient(620px 380px at 100% 0%, rgba(59,130,246,0.10), transparent 60%),
+    var(--bg);
+}
+
+.status-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-md); padding: var(--sp-3) var(--sp-4);
+  margin-top: var(--sp-4); font-size: var(--fs-xs); color: var(--text-2);
+  backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
+}
+.status-banner b { color: var(--accent); }
+
+.section-title {
+  font-size: var(--fs-2xs); text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); margin: var(--sp-6) 0 var(--sp-3);
+}
+
+/* главная кнопка подключения — набор действий */
+.connect-actions { display: grid; gap: var(--sp-2); margin-top: var(--sp-4); }
+.sub-url-box {
+  font-family: var(--font-mono); font-size: var(--fs-2xs); color: var(--text-2);
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-sm);
+  padding: var(--sp-2) var(--sp-3); margin-top: var(--sp-2); word-break: break-all;
+}
+
+/* сервисы */
+#services { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-2); }
+.svc {
+  display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto;
+  align-items: center; gap: 2px var(--sp-3); text-align: left;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: var(--sp-3); transition: border-color var(--d-base), transform var(--d-base) var(--e-out);
+  backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
+}
+.svc:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+.svc .ico { grid-row: span 2; font-size: 22px; }
+.svc .lbl { font-weight: 700; font-size: var(--fs-sm); }
+.svc .nt { font-size: var(--fs-2xs); }
+
+/* серверы */
+#servers { display: grid; gap: var(--sp-3); }
+.srv {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: var(--sp-4); backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
+}
+.srv-top { display: flex; align-items: center; gap: var(--sp-3); }
+.srv-top .flag { font-size: 24px; }
+.srv-info { flex: 1; }
+.srv-name { font-weight: 700; }
+.srv-role { font-size: var(--fs-2xs); color: var(--muted); }
+.srv-status { font-size: 20px; line-height: 1; color: var(--muted); position: relative; }
+.srv-status.checking { color: var(--warn); animation: blink 1s infinite; }
+.srv-status.ok { color: var(--ok); }
+.srv-status.ok::after {
+  /* живой ripple-индикатор доступности — паттерн из премиальных VPN-панелей (live ping) */
+  content: ""; position: absolute; inset: -6px; border-radius: 50%;
+  border: 1px solid var(--ok); animation: srv-ping 1.8s var(--e-out) infinite;
+}
+.srv-status.bad { color: var(--err); }
+@keyframes blink { 50% { opacity: 0.3; } }
+@keyframes srv-ping { 0% { transform: scale(0.6); opacity: 0.8; } 100% { transform: scale(1.6); opacity: 0; } }
+.srv-meta { font-size: var(--fs-2xs); color: var(--text-2); margin: var(--sp-2) 0; }
+.srv-actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; }
+.btn-sm { padding: var(--sp-2) var(--sp-3); font-size: var(--fs-2xs); }
+.qr-box { display: grid; place-items: center; margin-top: var(--sp-3); padding: var(--sp-3);
+  background: #fff; border-radius: var(--r-sm); }
+
+/* большая кнопка проверки */
+#btn-check { margin-top: var(--sp-2); }
+
+.legal-note { font-size: var(--fs-2xs); color: var(--muted); margin-top: var(--sp-6);
+  border-top: 1px solid var(--border); padding-top: var(--sp-4); line-height: 1.6; }
+
+/* ============================================================================
+   ПРЕМИУМ-ФУНКЦИИ (5 штук) — production, работают на реальных endpoint'ах.
+   ============================================================================ */
+
+/* Ф1: диагностика сети — тёмная "энергетическая" карточка (точечно Aurora) */
+.diag-card {
+  background: var(--core-bg, var(--surface));
+  color: var(--core-text, var(--text));
+  border-radius: var(--r-lg);
+  padding: var(--sp-5);
+  border: 1px solid rgba(34,211,238,0.18);
+  box-shadow: var(--shadow-glow);
+  position: relative;
+  overflow: hidden;
+}
+.diag-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(420px 220px at 90% -20%, rgba(34,211,238,0.25), transparent 60%);
+  pointer-events: none;
+}
+.diag-head { position: relative; margin-bottom: var(--sp-4); }
+.diag-title { font-weight: 800; font-size: var(--fs-md); font-family: var(--font-head); }
+.diag-sub { font-size: var(--fs-xs); color: var(--core-text-2, var(--text-2)); margin-top: var(--sp-1); }
+.diag-card .btn-primary { position: relative; }
+.diag-result { margin-top: var(--sp-4); display: grid; gap: var(--sp-2); position: relative; }
+.diag-row { display: flex; align-items: center; justify-content: space-between;
+  padding: var(--sp-2) var(--sp-3); background: rgba(255,255,255,0.05);
+  border-radius: var(--r-sm); font-size: var(--fs-xs); }
+.diag-row .k { color: var(--core-text-2, var(--text-2)); }
+.diag-row .v { font-weight: 700; font-family: var(--font-mono); }
+.diag-verdict { margin-top: var(--sp-2); padding: var(--sp-3); border-radius: var(--r-md);
+  font-size: var(--fs-sm); font-weight: 600; }
+.diag-verdict.ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: #6EE7A8; }
+.diag-verdict.warn { background: color-mix(in srgb, var(--warn) 18%, transparent); color: #FDBA5C; }
+.diag-verdict.bad { background: color-mix(in srgb, var(--err) 18%, transparent); color: #FCA5A5; }
+
+/* Ф3: умный автоподбор — лог попыток по цепочке протоколов */
+.smart-log { margin-top: var(--sp-3); display: grid; gap: var(--sp-1);
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md);
+  padding: var(--sp-3); font-family: var(--font-mono); font-size: var(--fs-2xs); }
+.smart-log .step { display: flex; align-items: center; gap: var(--sp-2); padding: 2px 0; }
+.smart-log .step .dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; background: var(--muted); }
+.smart-log .step.try .dot { background: var(--warn); animation: blink 0.8s infinite; }
+.smart-log .step.ok .dot { background: var(--ok); }
+.smart-log .step.skip .dot { background: var(--muted); }
+
+/* Ф5: выбор цели вместо протокола */
+.goal-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); }
+.goal-btn {
+  display: grid; place-items: center; gap: var(--sp-1);
+  padding: var(--sp-3) var(--sp-1); border-radius: var(--r-md);
+  background: var(--surface); border: 1px solid var(--border);
+  font-size: var(--fs-2xs); color: var(--text-2); text-align: center;
+  transition: transform var(--d-base) var(--e-out), border-color var(--d-base), background var(--d-base);
+}
+.goal-btn .ico { font-size: 20px; }
+.goal-btn:hover { transform: translateY(-2px); border-color: var(--border-strong); }
+.goal-btn.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--text); }
+
+/* Ф4: персональная подписка */
+.personal-card {
+  background: var(--surface); border: 1px dashed var(--border-strong); border-radius: var(--r-md);
+  padding: var(--sp-4);
+}
+.personal-card.ready { border-style: solid; border-color: var(--accent); }
+.personal-card .p-title { font-weight: 700; font-size: var(--fs-sm); margin-bottom: var(--sp-1); }
+.personal-card .p-list { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin: var(--sp-2) 0 var(--sp-3); }
+.personal-card .p-tag { font-size: var(--fs-2xs); padding: 2px var(--sp-2); border-radius: var(--r-pill);
+  border: 1px solid var(--accent); color: var(--accent); }
+
+/* Ф2: карта блокировок сообщества */
+.blockmap-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: var(--sp-4);
+}
+.blockmap-head { display: flex; align-items: center; justify-content: space-between;
+  font-size: var(--fs-sm); font-weight: 700; }
+.pulse-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 rgba(20,184,166,0.5); animation: bm-pulse 2s infinite; }
+@keyframes bm-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(20,184,166,0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(20,184,166,0); }
+  100% { box-shadow: 0 0 0 0 rgba(20,184,166,0); }
+}
+.blockmap-stats { font-size: var(--fs-xs); color: var(--text-2); margin: var(--sp-2) 0 var(--sp-3); }
+.blockmap-list { display: grid; gap: var(--sp-2); }
+.bm-region { display: flex; align-items: center; justify-content: space-between;
+  padding: var(--sp-2) var(--sp-3); background: var(--surface-2); border-radius: var(--r-sm);
+  font-size: var(--fs-2xs); }
+.bm-region .name { font-weight: 600; }
+.bm-region .st { font-family: var(--font-mono); }
+.bm-region .st.ok { color: var(--ok); }
+.bm-region .st.bad { color: var(--err); }
+
+/* ============================================================================
+   ВСЕГДА НА СВЯЗИ: WhatsApp / YouTube / Telegram / Instagram — приоритетные
+   карточки с многоуровневым fallback-подключением.
+   ============================================================================ */
+.alwayson-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.ao-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: var(--sp-4); display: flex; flex-direction: column; gap: var(--sp-2);
+  backdrop-filter: blur(var(--blur)); -webkit-backdrop-filter: blur(var(--blur));
+}
+.ao-head { display: flex; align-items: center; gap: var(--sp-2); }
+.ao-ico { font-size: 22px; }
+.ao-label { font-weight: 800; font-size: var(--fs-sm); flex: 1; }
+.ao-status { font-size: 12px; color: var(--muted); }
+.ao-status.checking { color: var(--warn); animation: blink 1s infinite; }
+.ao-status.ok { color: var(--ok); }
+.ao-status.bad { color: var(--err); }
+.ao-why { font-size: var(--fs-2xs); color: var(--text-2); line-height: 1.4; min-height: 2.6em; }
+.ao-connect { font-size: var(--fs-2xs); padding: var(--sp-2) var(--sp-3); }
+.ao-chain { display: grid; gap: 4px; margin-top: var(--sp-1); font-size: var(--fs-2xs); font-family: var(--font-mono); }
+.ao-route { display: flex; align-items: flex-start; gap: var(--sp-2); padding: 2px 0; line-height: 1.4; }
+.ao-route .dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex: 0 0 auto; background: var(--muted); }
+.ao-route.try .dot { background: var(--warn); animation: blink 0.8s infinite; }
+.ao-route.ok .dot { background: var(--ok); }
+.ao-route.skip .dot { background: var(--muted); }
+@media (max-width: 380px) { .alwayson-grid { grid-template-columns: 1fr; } }
+
+/* ============================================================================
+   XSERVIS VAULT — точечные акценты «изумрудного сейфа» поверх токенов.
+   Тёплый свет золота сверху + изумрудное дыхание фона; диагностическая
+   карточка получает изумрудную рамку и золотой блик вместо циана.
+   ============================================================================ */
+[data-theme="xservis-vault"] body {
+  background:
+    radial-gradient(720px 420px at 50% -12%, rgba(52, 227, 165, 0.11), transparent 62%),
+    radial-gradient(520px 320px at 100% 2%, rgba(232, 200, 122, 0.07), transparent 60%),
+    var(--bg);
+}
+[data-theme="xservis-vault"] .diag-card {
+  background: linear-gradient(180deg, #0C1B16 0%, #081310 100%);
+  border-color: rgba(52, 227, 165, 0.24);
+}
+[data-theme="xservis-vault"] .diag-card::before {
+  background: radial-gradient(420px 220px at 90% -20%, rgba(232, 200, 122, 0.16), transparent 60%);
+}
+[data-theme="xservis-vault"] .status-banner {
+  border-color: rgba(232, 200, 122, 0.22); /* золотая кромка статуса — «печать» доверия */
+}
